@@ -1,11 +1,16 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Welcome to Nanodb</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
-    </head>
-    <body>
-        <h1>Hello!</h1>
+  <head>
+    <title>Welcome to Nanodb</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0tUcYWxjL0iw56FHIK-TqY9e5NkhT63s&sensor=false"></script>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script type="text/javascript" src="{{ url_for('static', filename='js/nanoDB.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
-    </body>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
 </html>

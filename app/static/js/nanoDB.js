@@ -1,8 +1,8 @@
-var Cube = function(name, dim, count, gran, mapping) {
+var Cube = function(name, count, gran, dim, mapping) {
   this.name = name;
-  this.dim = dim;
   this.count= count;
   this.gran = gran;
+  this.dim = dim;
   this.mapping = mapping;
   this.world = null;
 };
@@ -91,7 +91,6 @@ var Node = function(id) {
 var _loadTimeSerieTable = function(line) {
   var splits = line.split('|');
   var id = splits[1];
-  // Getting the date out of the splitted string (remove space and last 't' char)
   var time = splits[2];
 
   // For each value (csv) add it to the array
@@ -115,7 +114,6 @@ var _loadTimeSerieTable = function(line) {
 
   return new TimeSerieTable(id, time, table);
 };
-
 
 var _loadNodes = function(line, nodes) {
 
