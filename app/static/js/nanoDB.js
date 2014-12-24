@@ -7,6 +7,9 @@ var Cube = function(name, dim, count, gran, mapping) {
   this.world = null;
 };
 
+
+
+
 var Serializer = function(){};
 Serializer.HEADER_SIZE = 5;
 
@@ -59,7 +62,7 @@ Serializer.prototype._loadCube = function(serialized) {
       var table = _loadTimeSerieTable(line);
       nodes[table.id] = table;
     } else {
-      node = _loadNodes(line, nodes);
+      var node = _loadNodes(line, nodes);
       nodes[node.id] = node;
       lastNode = node;
     }
@@ -78,8 +81,8 @@ var TimeSerieTable = function(id, start, table) {
 
 var Node = function(id) {
   this.id = id;
-  this.pch = {};
-  this.sch = {};
+  this.pch = null;
+  this.sch = null;
   this.spo = null;
   this.sco = null;
 };
@@ -113,7 +116,7 @@ var _loadTimeSerieTable = function(line) {
   return new TimeSerieTable(id, time, table);
 };
 
-// Handle errors: empty token
+
 var _loadNodes = function(line, nodes) {
 
   var splits = line.split('|');
@@ -123,9 +126,17 @@ var _loadNodes = function(line, nodes) {
     node = new Node(id);
     if(splits[2] != '') {
       node.pch = JSON.parse(splits[2]);
+      for(var key in node.pch) {
+        var value = node.pch[key];
+        node.pch[key] = nodes[value];
+      }
     }
     if(splits[3] != '') {
       node.sch = JSON.parse(splits[3]);
+      for(var key in node.sch) {
+        var value = node.sch[key];
+        node.sch[key] = nodes[value];
+      }
     }
 
     if (splits[4] != '') {
